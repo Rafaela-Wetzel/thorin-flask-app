@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>About Page</h2>
+
+<h2>{{ page_title }}</h2>
 <p>
     The formation of the group grew out of a meeting Gandalf had with Thorin in Bree which kindled Thorin's interest
     in recapturing his long lost family inheritance. (Thorin's grandfather had been the King under the Mountain when
@@ -11,62 +12,47 @@
     to leave on other business, welcomed a fourteenth to fill into their party.
 </p>
 
+{% for member in company %}
+
 <div class="row featurette">
+
+    {% if loop.index %2 != 0 %}
+
     <div class="col-md-7">
-        <h3>Thorin Oakenshield</h3>
+        <h3>{{ loop.index }}. {{ member.name }}</h3>
         <p>
-            Thorin II was born in TA 2746 to the Dwarf prince Thráin II in the city of the Lonely Mountain. Early in his
-            youth, Thorin and the other Dwarves of the Lonely Mountain were forced to flee by the dragon Smaug, in TA
-            2770. While in exile, he quickly grew into a capable warrior. This was demonstrated at the Battle of
-            Azanulbizar, near Moria, in TA 2799. He fought with one of the Dwarven armies beneath Moria's East-gate, and
-            at some point in the battle, his shield broke, and, using an oaken tree branch found on the ground as a
-            shield, he gained the epithet "Oakenshield," which remained with him even in death.
+            {{ member.description }}
         </p>
     </div>
     <div class="col-md-5">
-        <img src="https://static.wikia.nocookie.net/lotr/images/e/ec/1400193_695248260488487_320403599_o.jpg"
+        <img src="{{ member.image_source }}" class="featurette-image image-responsive"
             alt="Picture of Thorin Oakenshield.">
     </div>
-</div>
 
-<div class="row featurette">
-    <div class="col-md-5">
-        <img src="https://static.wikia.nocookie.net/lotr/images/8/8e/F%C3%ADliAndK%C3%ADliByMontanini.jpg"
-            alt="Picture of Fíli and Kíli.">
-    </div>
+{% endif %}
+
+    {% if loop.index %2 == 0 %}
+
+<div class="col-md-5">
+    <img src="{{ member.image_source }}" class="featurette-image image-responsive"
+        alt="Picture of Thorin Oakenshield.">
+</div>
     <div class="col-md-7">
-        <h3>Fíli and Kíli</h3>
+        <h3>{{ loop.index }}. {{ member.name }}</h3>
         <p>
-            Fíli and Kíli were Dwarvern brothers and were also the youngest of the thirteen Dwarves who set out with
-            Thorin Oakenshield's company, along with Gandalf and Bilbo Baggins, to reclaim the Lonely Mountain from the
-            dragon Smaug.
-            <br>
-            Fíli and Kíli were the two most active Dwarves of Thorin's company, and, apart from Balin and possibly
-            Bombur, they appear more frequently as "individual" characters in J.R.R. Tolkien's The Hobbit than the rest
-            of Thorin's companions, who are most often named only in group-reference.
+            {{ member.description }}
         </p>
     </div>
+
+{% endif %}
+
 </div>
 
-<div class="row featurette">
-    <div class="col-md-7">
-        <h3>Óin</h3>
-        <p>
-            Óin was the older brother of Glóin, cousin of Dwalin and Balin, and uncle of Gimli. Óin's uncle was Fundin,
-            the father of Balin and Dwalin.
-            <br>
-            Óin fought in the Battle of Azanulbizar along with Thorin Oakenshield, and in TA 2941 joined Thorin's
-            company on the quest to reclaim the Lonely Mountain, wearing a brown hood.[2] Óin was one of the Dwarves who
-            bet that Bilbo would come along with them to reclaim the Lonely Mountain. Óin and his brother Glóin were
-            usually in charge of preparing the fire for the Company, as they were the most skilled of the group. He
-            fought in and survived the Battle of Five Armies, and later settled in the Lonely Mountain with King Dáin II
-            Ironfoot, along with many other Dwarves of the company of Thorin.
-        </p>
-    </div>
-    <div class="col-md-5">
-        <img src="https://static.wikia.nocookie.net/lotr/images/e/e8/Oin.jpg"
-            alt="Picture of Óin.">
-    </div>
-</div>
+{% if loop.index != loop.length %}
 
+<hr class="featurette-divider">
+
+{% endif %}
+
+{% endfor %}
 {% endblock %}
